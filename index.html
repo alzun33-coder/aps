@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUMA: The Gemini Moat - You Tutor</title>
+    <style>
+        /* CSS UNTUK TAMPILAN GAHAR & RAPI */
+        body {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 { color: #00ff00; text-shadow: 0 0 10px rgba(0, 255, 0, 0.5); }
+
+        /* Desain Tombol Kelas */
+        .button-grid, .button-grid-extra {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+            max-width: 500px;
+        }
+
+        .class-btn {
+            background: #333;
+            color: white;
+            border: 1px solid #444;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .class-btn:hover { background: #00ff00; color: black; }
+
+        /* Tombol Neon Utama */
+        .neon-button {
+            margin-top: 30px;
+            padding: 15px 30px;
+            background: transparent;
+            color: #00ff00;
+            border: 2px solid #00ff00;
+            font-size: 1.2rem;
+            font-weight: bold;
+    <div id="layerDaftar" style="display: none; background: #1a1a1a; padding: 25px; border: 2px solid #00ff00; border-radius: 20px; margin: 20px auto; max-width: 450px;">
+    <h3 style="color: #00ff00; text-align: center;">📝 Profil Siswa You Tutor</h3>
+    
+    <label style="display:block; font-size:12px; color:#888; margin-top:15px;">NAMA LENGKAP</label>
+    <input type="text" id="regNama" placeholder="Contoh: Budi Santoso" style="width:100%; padding:10px; background:#222; color:white; border:1px solid #333; border-radius:8px;">
+
+    <label style="display:block; font-size:12px; color:#888; margin-top:15px;">TEMPAT, TANGGAL LAHIR</label>
+    <input type="text" id="regTTL" placeholder="Jakarta, 01-01-2010" style="width:100%; padding:10px; background:#222; color:white; border:1px solid #333; border-radius:8px;">
+
+    <label style="display:block; font-size:12px; color:#888; margin-top:15px;">ALAMAT TEMPAT TINGGAL</label>
+    <input type="text" id="regAlamat" placeholder="Jl. Raya No. 123, Jakarta" style="width:100%; padding:10px; background:#222; color:white; border:1px solid #333; border-radius:8px;">
+
+    <label style="display:block; font-size:12px; color:#888; margin-top:15px;">ALAMAT SEKOLAH/UNIVERSITAS</label>
+    <input type="text" id="regSekolah" placeholder="SDN 01 / Universitas Indonesia" style="width:100%; padding:10px; background:#222; color:white; border:1px solid #333; border-radius:8px;">
+
+    <label style="display:block; font-size:12px; color:#888; margin-top:15px;">JENJANG PENDIDIKAN</label>
+    <select id="regJenjang" style="width:100%; padding:10px; background:#222; color:white; border:1px solid #333; border-radius:8px;">
+        <option value="SD">SD</option>
+        <option value="SMP">SMP</option>
+        <option value="SMA">SMA</option>
+        <option value="Mahasiswa">Perguruan Tinggi</option>
+    </select>
+
+    <button onclick="prosesDaftar()" style="width:100%; background:#00ff00; color:black; padding:15px; font-weight:bold; border:none; border-radius:10px; cursor:pointer; margin-top:20px;">
+        DAFTAR & MULAI BELAJAR
+    </button>
+    
+    <center>
+        <button onclick="kembaliKeHome()" style="background:none; color:#00ff00; border:1px solid #00ff00; padding:5px 15px; border-radius:20px; cursor:pointer; margin-top:15px;">
+            ⬅ Kembali ke Home
+        </button>
+    </center>
+</div>
+        }
+<button onclick="kembaliKeHome()" style="background:none; color:#00ff00; border:1px solid #00ff00; padding:5px 15px; border-radius:20px; cursor:pointer; margin-bottom:15px;">
+    ⬅ Kembali ke Home
+</button>
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background: #111;
+            color: white;
+            border: 1px solid #333;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        .tutor-belajar { width: 100%; max-width: 500px; border-radius: 15px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+
+    <div id="halamanUtama">
+        <h1>Welcome to You Tutor</h1>
+        <p style="color: #888;">Apa kesulitan kamu hari ini adik-adikku?</p>
+        
+        <img src="Belajar.jpg" class="tutor-belajar" alt="Belajar Bersama">
+
+        <p>Pilih kelas kamu untuk mulai:</p>
+        <div class="button-grid">
+            <button class="class-btn" onclick="bukaForm()">Kelas 1</button>
+            <button class="class-btn" onclick="bukaForm()">Kelas 2</button>
+            <button class="class-btn" onclick="bukaForm()">Kelas 3</button>
+            <button class="class-btn" onclick="bukaForm()">Kelas 4</button>
+            <button class="class-btn" onclick="bukaForm()">Kelas 5</button>
+            <button class="class-btn" onclick="bukaForm()">Kelas 6</button>
+            <button class="class-btn" onclick="bukaForm()">Kelas 7</button>
+            <button class="class-btn" onclick="bukaForm()">Kelas 8</button>
+            <button class="class-btn" onclick="bukaForm()">Kelas 9</button>
+        </div>
+
+        <p>Jenjang Lanjutan:</p>
+        <div class="button-grid-extra">
+            <button class="class-btn" onclick="bukaForm()">10 (SMA)</button>
+            <button class="class-btn" onclick="bukaForm()">11 (SMA)</button>
+            <button class="class-btn" onclick="bukaForm()">12 (SMA)</button>
+            <button class="class-btn" onclick="bukaForm()">Mahasiswa</button>
+        </div>
+
+        <button class="neon-button" onclick="bukaForm()">MASUK UNTUK BELAJAR</button>
+    </div>
+
+    <div id="layerDaftar" style="display: none;">
+        <h3 style="color: #00ff00;">📝 Profil Siswa You Tutor</h3>
+        <p style="font-size: 12px; color: #888;">Lengkapi data agar Kakak Guru bisa mengenalmu</p>
+        
+        <input type="text" id="regNama" placeholder="Nama Lengkap Anda">
+        <select id="regJenjang">
+            <option value="">Pilih Jenjang Sekolah</option>
+            <option value="SD">SD (Kelas 1-6)</option>
+            <option value="SMP">SMP (Kelas 7-9)</option>
+            <option value="SMA">SMA (Kelas 10-12)</option>
+            <option value="Kuliah">Perguruan Tinggi</option>
+        </select>
+
+        <button class="neon-button" onclick="prosesDaftar()" style="width: 100%;">DAFTAR & MULAI BELAJAR</button>
+    </div>
+
+    <div id="areaTanya" style="display: none;">
+        <h2 style="color: #00ff00;">Halo, <span id="namaSapaan">Siswa</span>!</h2>
+        <p>Silakan tulis pertanyaanmu di bawah ini:</p>
+        
+        <textarea id="inputPertanyaan" placeholder="Contoh: Jelaskan cara menghitung luas lingkaran..."></textarea>
+        
+        <button class="neon-button" onclick="aksesMoat()" style="width: 100%;">TANYAKAN KE KAKAK GURU</button>
+
+        <div id="kotakJawaban" style="margin-top: 20px; padding: 15px; background: #111; border: 1px dashed #00ff00; text-align: left;">
+            <p id="teksJawaban" style="color: #ccc; line-height: 1.6;">Jawaban Kakak Guru akan muncul di sini...</p>
+        </div>
+    </div>
+
+    <script>
+        // FUNGSI 1: BUKA FORM (SEMBUNYIKAN HALAMAN UTAMA)
+        window.bukaForm = function() {
+            document.getElementById('halamanUtama').style.display = 'none';
+            document.getElementById('layerDaftar').style.display = 'block';
+            window.scrollTo(0,0);
+        };
+
+        // FUNGSI 2: PROSES DAFTAR (MASUK KE AREA TANYA)
+        window.prosesDaftar = function() {
+    const profil = {
+        nama: document.getElementById('regNama').value,
+        ttl: document.getElementById('regTTL').value,
+        alamat: document.getElementById('regAlamat').value,
+        sekolah: document.getElementById('regSekolah').value,
+        jenjang: document.getElementById('regJenjang').value
+    };
+
+    if (profil.nama && profil.jenjang && profil.alamat) {
+        // Simpan Profil Lengkap ke browser
+        localStorage.setItem('userProfilYouTutor', JSON.stringify(profil));
+        
+        // Ganti Tampilan (Linear Flow)
+        document.getElementById('namaSapaan').innerText = profil.nama;
+        document.getElementById('layerDaftar').style.display = 'none';
+        document.getElementById('areaTanya').style.display = 'block';
+        
+        alert("PUMA Protocol: Profil " + profil.nama + " berhasil diverifikasi!");
+        window.scrollTo(0,0);
+    } else {
+        alert("Semua kolom (Nama, TTL, Alamat, Sekolah) wajib diisi!");
+    }
+};
+
+        // 1. Simpan dengan Nama Key yang Konsisten
+        localStorage.setItem('userProfilYouTutor', JSON.stringify({nama, jenjang}));
+        
+        // 2. Sapa Siswa
+        document.getElementById('namaSapaan').innerText = nama;
+        
+        // 3. MATIKAN Halaman Pendaftaran agar TIDAK TUMPANG TINDIH
+        document.getElementById('layerDaftar').style.display = 'none';
+        
+        // 4. HIDUPKAN Area Tanya
+        document.getElementById('areaTanya').style.display = 'block';
+        
+        // 5. Scroll ke atas otomatis agar user langsung melihat kotak tanya
+        window.scrollTo(0, 0);
+    }
+            } else {
+                alert("Mohon isi Nama dan Jenjang Pendidikan ya!");
+            }
+        };
+
+        // FUNGSI 3: AKSES AI GEMINI (OTAK SISTEM)
+        window.aksesMoat = function() {
+            const pertanyaan = document.getElementById('inputPertanyaan').value;
+            const namaSiswa = document.getElementById('namaSapaan').innerText;
+
+            if (!pertanyaan) return alert("Tulis dulu pertanyaannya ya!");
+
+            document.getElementById('teksJawaban').innerText = "Kakak Guru sedang berpikir... Mohon tunggu sebentar.";
+
+            // PUMA Protocol API Connection [cite: 2026-02-04]
+            const API_KEY = "AizaSyC7ILKtNHuLDj1gzICAmyRLatZHOjxF5Qg";
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+
+            fetch(url, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    contents: [{ parts: [{ text: `Jawablah sebagai tutor belajar yang ramah untuk siswa bernama ${namaSiswa}. Pertanyaan: ${pertanyaan}` }] }]
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const hasil = data.candidates[0].content.parts[0].text;
+                document.getElementById('teksJawaban').innerText = hasil;
+            })
+            .catch(error => {
+                console.error(error);
+                document.getElementById('teksJawaban').innerText = "Maaf, ada kendala koneksi. Coba lagi ya!";
+            });
+        };
+        // BARIS 216: Fungsi Navigasi Balik ke Halaman Utama
+window.kembaliKeHome = function() {
+    // 1. Sembunyikan semua halaman tambahan
+    document.getElementById('layerDaftar').style.display = 'none';
+    document.getElementById('areaTanya').style.display = 'none';
+    
+    // 2. Munculkan kembali Halaman Utama
+    document.getElementById('halamanUtama').style.display = 'block';
+    
+    // 3. Scroll ke posisi paling atas
+    window.scrollTo(0,0);
+    console.log("Navigasi: Kembali ke Home Berhasil.");
+};
+    </script>
+</body>
+<button onclick="kembaliKeHome()" style="background:none; color:#00ff00; border:1px solid #00ff00; padding:5px 15px; border-radius:20px; cursor:pointer; margin-bottom:15px;">
+    ⬅ Kembali ke Home
+</button>
+</html>
